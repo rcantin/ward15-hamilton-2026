@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ward 15 Hamilton 2026 — Candidate Comparison</title>
+<style>
+:root {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --accent: #0f766e;
+  --accent-light: #ccfbf1;
+  --incumbent: #0369a1;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  padding: 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding: 1.25rem 0;
+}
+header h1 { font-size: 1.6rem; font-weight: 700; }
+header p { color: var(--muted); font-size: 0.95rem; margin-top: 0.25rem; }
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  align-items: center;
+}
+input[type="search"] {
+  flex: 1;
+  min-width: 180px;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: var(--card);
+}
+select, button {
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+button:hover { background: var(--accent-light); }
+.cards {
+  display: grid;
+  gap: 1rem;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: box-shadow 0.15s;
+}
+.card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.card-header h2 { font-size: 1.2rem; }
+.badge {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.badge.incumbent { background: #e0f2fe; color: var(--incumbent); }
+.badge.challenger { background: #f1f5f9; color: var(--muted); }
+.meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.6rem; }
+.platform { margin: 0.6rem 0; }
+.platform strong { display: block; margin-bottom: 0.25rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--muted); }
+.platform ul { padding-left: 1.2rem; font-size: 0.95rem; }
+.sources { margin-top: 0.9rem; font-size: 0.85rem; }
+.sources a { color: var(--accent); text-decoration: none; margin-right: 0.75rem; }
+.sources a:hover { text-decoration: underline; }
+.note {
+  background: #fefce8;
+  border: 1px solid #fde047;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+  color: #854d0e;
+}
+footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+  padding-bottom: 2rem;
+}
+@media (max-width: 600px) {
+  header h1 { font-size: 1.3rem; }
+  .card-header { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Ward 15 · Hamilton 2026</h1>
+  <p>City Council Candidate Comparison · Election Day Oct 26</p>
+</header>
+
+<div class="note">
+  Nominations close Aug 21. Data as of mid-August 2026. Always verify final certified list on the City of Hamilton website.
+</div>
+
+<div class="controls">
+  <input type="search" id="search" placeholder="Search name, background, platform…">
+  <select id="filter">
+    <option value="all">All candidates</option>
+    <option value="incumbent">Incumbent only</option>
+    <option value="challenger">Challengers only</option>
+    <option value="detailed">Has detailed platform</option>
+  </select>
+  <select id="sort">
+    <option value="name">Sort by name</option>
+    <option value="status">Sort by status</option>
+  </select>
+</div>
+
+<div class="cards" id="cards"></div>
+
+<footer>
+  Sources linked on each card · Built for informed voting · Not affiliated with any candidate or the City of Hamilton
+</footer>
+
+<script>
+const candidates = [
+  {
+    name: "Chase Alford",
+    status: "challenger",
+    detailed: true,
+    background: "Waterdown raised (25 yrs). BSc Biological Sciences (Guelph). Agricultural management experience in New Brunswick & Chatham-Kent.",
+    platform: [
+      "Infrastructure accountability & roads",
+      "Fair taxation / oppose stormwater fees on farms",
+      "Community safety (seek police board seat)",
+      "Protect agricultural land & environment"
+    ],
+    sources: [
+      {label: "Campaign site", url: "https://chase4ward15.ca/"},
+      {label: "CBC", url: "https://www.cbc.ca/news/canada/hamilton/whos-running-hamilton-2026-9.7249262"}
+    ]
+  },
+  {
+    name: "Ted McMeekin",
+    status: "incumbent",
+    detailed: true,
+    background: "Current Ward 15 councillor (elected 2022). Former Flamborough mayor, 5-term Liberal MPP, previous Hamilton councillor.",
+    platform: [
+      "Joint police & fire station",
+      "Grow agro-food sector",
+      "Protect environment",
+      "Enhance public transit",
+      "Affordable housing",
+      "~$170M investments secured (claimed)"
+    ],
+    sources: [
+      {label: "Campaign / office site", url: "https://www.tedmcmeekinward15.com/"},
+      {label: "CBC", url: "https://www.cbc.ca/news/canada/hamilton/whos-running-hamilton-2026-9.7249262"},
+      {label: "FlamboroughToday", url: "https://www.flamboroughtoday.com/spotlight/councillor-ted-mcmeekin-record-investment-of-170-million-has-been-secured-and-committed-for-ward-15-flamborough-waterdown-11428116"}
+    ]
+  },
+  {
+    name: "Colleen Stewart",
+    status: "challenger",
+    detailed: true,
+    background: "Wife, mother, business owner (storytelling consultant). School council chair, long-term volunteer, neighbourhood activist. Recent Waterdown resident.",
+    platform: [
+      "Fair share of tax dollars for Ward 15",
+      "City budget review for waste",
+      "Roads & infrastructure",
+      "Increased police presence",
+      "Recreation centre & family services",
+      "Attract high-paying jobs"
+    ],
+    sources: [
+      {label: "Campaign site", url: "https://colleenstewart.ca/"},
+      {label: "FlamboroughToday", url: "https://www.flamboroughtoday.com/municipal-election/ward-15-council-candidate-calls-for-closer-look-at-hamilton-spending-priorities-12423731"},
+      {label: "CBC", url: "https://www.cbc.ca/news/canada/hamilton/whos-running-hamilton-2026-9.7249262"}
+    ]
+  },
+  {
+    name: "Zac Wrobel",
+    status: "challenger",
+    detailed: false,
+    background: "Limited public information available as of mid-August 2026.",
+    platform: ["Platform details not yet published"],
+    sources: [
+      {label: "CBC list", url: "https://www.cbc.ca/news/canada/hamilton/whos-running-hamilton-2026-9.7249262"}
+    ]
+  },
+  {
+    name: "Jeff Yaeger",
+    status: "challenger",
+    detailed: false,
+    background: "Waterdown resident. Director of LNMB Product Management and Consulting Inc.",
+    platform: ["Platform details not yet published"],
+    sources: [
+      {label: "CBC list", url: "https://www.cbc.ca/news/canada/hamilton/whos-running-hamilton-2026-9.7249262"}
+    ]
+  }
+];
+
+const cardsEl = document.getElementById("cards");
+const searchEl = document.getElementById("search");
+const filterEl = document.getElementById("filter");
+const sortEl = document.getElementById("sort");
+
+function render() {
+  let list = [...candidates];
+  const q = searchEl.value.toLowerCase().trim();
+  const f = filterEl.value;
+  const s = sortEl.value;
+
+  if (q) {
+    list = list.filter(c =>
+      c.name.toLowerCase().includes(q) ||
+      c.background.toLowerCase().includes(q) ||
+      c.platform.join(" ").toLowerCase().includes(q)
+    );
+  }
+  if (f === "incumbent") list = list.filter(c => c.status === "incumbent");
+  if (f === "challenger") list = list.filter(c => c.status === "challenger");
+  if (f === "detailed") list = list.filter(c => c.detailed);
+
+  if (s === "name") list.sort((a,b) => a.name.localeCompare(b.name));
+  if (s === "status") list.sort((a,b) => a.status.localeCompare(b.status) || a.name.localeCompare(b.name));
+
+  cardsEl.innerHTML = list.map(c => `
+    <article class="card">
+      <div class="card-header">
+        <h2>${c.name}</h2>
+        <span class="badge ${c.status}">${c.status === "incumbent" ? "Incumbent" : "Challenger"}</span>
+      </div>
+      <p class="meta">${c.background}</p>
+      <div class="platform">
+        <strong>Platform highlights</strong>
+        <ul>${c.platform.map(p => `<li>${p}</li>`).join("")}</ul>
+      </div>
+      <div class="sources">
+        ${c.sources.map(s => `<a href="${s.url}" target="_blank" rel="noopener">${s.label}</a>`).join("")}
+      </div>
+    </article>
+  `).join("") || "<p style='color:var(--muted);text-align:center;padding:2rem'>No candidates match your filters.</p>";
+}
+
+searchEl.addEventListener("input", render);
+filterEl.addEventListener("change", render);
+sortEl.addEventListener("change", render);
+render();
+</script>
+</body>
+</html>
