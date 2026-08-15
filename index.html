@@ -218,7 +218,7 @@ const candidates = [
     name: "Ted McMeekin",
     status: "incumbent",
     detailed: true,
-    background: "Born ~1948 and raised on Hamilton’s west mountain. Social worker by training (BSW McMaster, MSW Wilfrid Laurier). Early career included executive director of the Burlington Social Planning Council, chair of part-time studies at Mohawk College, and Mission & Stewardship Officer for the United Church. Owned and operated Chapters Bookstore in Waterdown for eight years. First elected to Hamilton City Council (Ward 7) 1976–1980. Moved to Flamborough and served as Mayor of the Town of Flamborough 1994–2000. Five-term Liberal MPP (2000–2018) holding four cabinet portfolios (Government & Consumer Services; Agriculture, Food & Rural Affairs; Community & Social Services; Municipal Affairs & Housing). Returned to municipal politics and won Ward 15 in 2022. Extensive community volunteer (YMCA president, Lung Association, Mental Health Association, etc.).",
+    background: "Born ~1948 and raised on Hamilton's west mountain. Social worker by training (BSW McMaster, MSW Wilfrid Laurier). Early career included executive director of the Burlington Social Planning Council, chair of part-time studies at Mohawk College, and Mission & Stewardship Officer for the United Church. Owned and operated Chapters Bookstore in Waterdown for eight years. First elected to Hamilton City Council (Ward 7) 1976-1980. Moved to Flamborough and served as Mayor of the Town of Flamborough 1994-2000. Five-term Liberal MPP (2000-2018) holding four cabinet portfolios (Government & Consumer Services; Agriculture, Food & Rural Affairs; Community & Social Services; Municipal Affairs & Housing). Returned to municipal politics and won Ward 15 in 2022. Extensive community volunteer (YMCA president, Lung Association, Mental Health Association, etc.).",
     platform: [
       "Joint police & fire station (Parkside) — major achievement",
       "Grow agro-food sector",
@@ -238,7 +238,7 @@ const candidates = [
     name: "Colleen Stewart",
     status: "challenger",
     detailed: true,
-    background: "Age 56. Wife, mother, and business owner (storytelling / communications consultant). Moved to Waterdown from Burlington about two years ago with her husband and son. Active in her church, served four years on school council (one as Chair), long-term volunteer at an Ontario food bank and mission, and neighbourhood activist who successfully pushed for high-school community clean-up days and regularly organises litter clean-ups. Positions herself as a skilled facilitator who can bring residents’ concerns effectively to City Hall.",
+    background: "Age 56. Wife, mother, and business owner (storytelling / communications consultant). Moved to Waterdown from Burlington about two years ago with her husband and son. Active in her church, served four years on school council (one as Chair), long-term volunteer at an Ontario food bank and mission, and neighbourhood activist who successfully pushed for high-school community clean-up days and regularly organises litter clean-ups. Positions herself as a skilled facilitator who can bring residents' concerns effectively to City Hall.",
     platform: [
       "Fair share of tax dollars for Ward 15 (budget review for waste)",
       "Roads & infrastructure fixes",
@@ -280,7 +280,11 @@ const filterEl = document.getElementById("filter");
 const sortEl = document.getElementById("sort");
 
 function escapeHtml(str) {
-  return str.replace(/&/g,"&").replace(/</g,"<").replace(/>/g,">").replace(/"/g,""");
+  return str
+    .replace(/&/g, "&")
+    .replace(/</g, "<")
+    .replace(/>/g, ">")
+    .replace(/"/g, """);
 }
 
 function highlight(text, query) {
