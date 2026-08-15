@@ -34,28 +34,6 @@ header {
 }
 header h1 { font-size: 1.6rem; font-weight: 700; }
 header p { color: var(--muted); font-size: 0.95rem; margin-top: 0.2rem; }
-.dates {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 0.7rem 1rem;
-  margin-bottom: 1rem;
-}
-.dates h2 {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--muted);
-  margin-bottom: 0.4rem;
-}
-.dates ul {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem 1.25rem;
-  font-size: 0.875rem;
-}
-.dates li strong { font-weight: 600; }
 .controls {
   display: flex;
   flex-wrap: wrap;
@@ -150,7 +128,6 @@ footer {
 @media (max-width: 600px) {
   header h1 { font-size: 1.3rem; }
   .card-header { flex-direction: column; }
-  .dates ul { flex-direction: column; gap: 0.25rem; }
 }
 </style>
 </head>
@@ -159,17 +136,6 @@ footer {
   <h1>Ward 15 · Hamilton 2026</h1>
   <p>City Council Candidate Comparison</p>
 </header>
-
-<section class="dates">
-  <h2>Key Dates</h2>
-  <ul>
-    <li><strong>May 1</strong> Nominations opened</li>
-    <li><strong>Aug 21, 2 pm</strong> Nominations close</li>
-    <li><strong>Aug 24</strong> Candidates certified</li>
-    <li><strong>Oct 26</strong> Election Day</li>
-    <li><strong>Nov 15</strong> Term begins</li>
-  </ul>
-</section>
 
 <div class="note">
   Data compiled mid-August 2026. Always verify the final certified list on the City of Hamilton website after Aug 24.
@@ -203,10 +169,10 @@ const candidates = [
     detailed: true,
     background: "Born in Hamilton; moved to Waterdown in 2001 at age 10. Attended Waterdown District High School. Earned a BSc in Biological Sciences with a minor in Ecology from the University of Guelph. Built a career managing large-scale agricultural production in New Brunswick and Chatham-Kent, eventually overseeing six acres of complex greenhouse operations. Returned to Ward 15 and was the first candidate to file for the seat. Age 34.",
     platform: [
-      "Infrastructure accountability & roads (project-manager approach)",
+      "Infrastructure accountability and roads (project-manager approach)",
       "Fair taxation / oppose stormwater fees hitting farms",
       "Community safety (seek seat on police services board)",
-      "Protect agricultural land, green space & environment"
+      "Protect agricultural land, green space and environment"
     ],
     sources: [
       {label: "Campaign site", url: "https://chase4ward15.ca/"},
@@ -218,9 +184,9 @@ const candidates = [
     name: "Ted McMeekin",
     status: "incumbent",
     detailed: true,
-    background: "Born ~1948 and raised on Hamilton's west mountain. Social worker by training (BSW McMaster, MSW Wilfrid Laurier). Early career included executive director of the Burlington Social Planning Council, chair of part-time studies at Mohawk College, and Mission & Stewardship Officer for the United Church. Owned and operated Chapters Bookstore in Waterdown for eight years. First elected to Hamilton City Council (Ward 7) 1976-1980. Moved to Flamborough and served as Mayor of the Town of Flamborough 1994-2000. Five-term Liberal MPP (2000-2018) holding four cabinet portfolios (Government & Consumer Services; Agriculture, Food & Rural Affairs; Community & Social Services; Municipal Affairs & Housing). Returned to municipal politics and won Ward 15 in 2022. Extensive community volunteer (YMCA president, Lung Association, Mental Health Association, etc.).",
+    background: "Born ~1948 and raised on Hamilton's west mountain. Social worker by training (BSW McMaster, MSW Wilfrid Laurier). Early career included executive director of the Burlington Social Planning Council, chair of part-time studies at Mohawk College, and Mission and Stewardship Officer for the United Church. Owned and operated Chapters Bookstore in Waterdown for eight years. First elected to Hamilton City Council (Ward 7) 1976-1980. Moved to Flamborough and served as Mayor of the Town of Flamborough 1994-2000. Five-term Liberal MPP (2000-2018) holding four cabinet portfolios (Government and Consumer Services; Agriculture, Food and Rural Affairs; Community and Social Services; Municipal Affairs and Housing). Returned to municipal politics and won Ward 15 in 2022. Extensive community volunteer (YMCA president, Lung Association, Mental Health Association, etc.).",
     platform: [
-      "Joint police & fire station (Parkside) — major achievement",
+      "Joint police and fire station (Parkside) - major achievement",
       "Grow agro-food sector",
       "Protect environment",
       "Enhance public transit",
@@ -241,9 +207,9 @@ const candidates = [
     background: "Age 56. Wife, mother, and business owner (storytelling / communications consultant). Moved to Waterdown from Burlington about two years ago with her husband and son. Active in her church, served four years on school council (one as Chair), long-term volunteer at an Ontario food bank and mission, and neighbourhood activist who successfully pushed for high-school community clean-up days and regularly organises litter clean-ups. Positions herself as a skilled facilitator who can bring residents' concerns effectively to City Hall.",
     platform: [
       "Fair share of tax dollars for Ward 15 (budget review for waste)",
-      "Roads & infrastructure fixes",
+      "Roads and infrastructure fixes",
       "Increased police presence / safer streets",
-      "Complete recreation centre & family services",
+      "Complete recreation centre and family services",
       "Attract high-paying local jobs through rezoning"
     ],
     sources: [
@@ -280,11 +246,11 @@ const filterEl = document.getElementById("filter");
 const sortEl = document.getElementById("sort");
 
 function escapeHtml(str) {
-  return str
-    .replace(/&/g, "&")
-    .replace(/</g, "<")
-    .replace(/>/g, ">")
-    .replace(/"/g, """);
+  return String(str)
+    .replace(/&/g, "\u0026amp;")
+    .replace(/</g, "\u0026lt;")
+    .replace(/>/g, "\u0026gt;")
+    .replace(/"/g, "\u0026quot;");
 }
 
 function highlight(text, query) {
