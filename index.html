@@ -14,6 +14,7 @@
   --accent: #0f766e;
   --accent-light: #ccfbf1;
   --incumbent: #0369a1;
+  --link: #0284c7;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -27,11 +28,32 @@ body {
 }
 header {
   text-align: center;
-  margin-bottom: 1.5rem;
-  padding: 1.25rem 0;
+  margin-bottom: 1.25rem;
+  padding: 1.25rem 0 0.5rem;
 }
 header h1 { font-size: 1.6rem; font-weight: 700; }
 header p { color: var(--muted); font-size: 0.95rem; margin-top: 0.25rem; }
+.dates {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.dates h2 {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+}
+.dates ul {
+  list-style: none;
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.95rem;
+}
+.dates li strong { display: inline-block; min-width: 9.5rem; }
 .controls {
   display: flex;
   flex-wrap: wrap;
@@ -48,7 +70,7 @@ input[type="search"] {
   font-size: 0.95rem;
   background: var(--card);
 }
-select, button {
+select {
   padding: 0.55rem 0.85rem;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -56,11 +78,7 @@ select, button {
   font-size: 0.9rem;
   cursor: pointer;
 }
-button:hover { background: var(--accent-light); }
-.cards {
-  display: grid;
-  gap: 1rem;
-}
+.cards { display: grid; gap: 1rem; }
 .card {
   background: var(--card);
   border: 1px solid var(--border);
@@ -86,12 +104,24 @@ button:hover { background: var(--accent-light); }
 }
 .badge.incumbent { background: #e0f2fe; color: var(--incumbent); }
 .badge.challenger { background: #f1f5f9; color: var(--muted); }
-.meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.6rem; }
+.meta { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.75rem; }
 .platform { margin: 0.6rem 0; }
-.platform strong { display: block; margin-bottom: 0.25rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--muted); }
+.platform strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+}
 .platform ul { padding-left: 1.2rem; font-size: 0.95rem; }
-.sources { margin-top: 0.9rem; font-size: 0.85rem; }
-.sources a { color: var(--accent); text-decoration: none; margin-right: 0.75rem; }
+.sources { margin-top: 0.9rem; font-size: 0.9rem; }
+.sources a {
+  color: var(--link);
+  text-decoration: none;
+  margin-right: 0.85rem;
+  font-weight: 500;
+}
 .sources a:hover { text-decoration: underline; }
 .note {
   background: #fefce8;
@@ -112,17 +142,29 @@ footer {
 @media (max-width: 600px) {
   header h1 { font-size: 1.3rem; }
   .card-header { flex-direction: column; }
+  .dates li strong { display: block; min-width: auto; }
 }
 </style>
 </head>
 <body>
 <header>
   <h1>Ward 15 · Hamilton 2026</h1>
-  <p>City Council Candidate Comparison · Election Day Oct 26</p>
+  <p>City Council Candidate Comparison</p>
 </header>
 
+<section class="dates">
+  <h2>Key Dates</h2>
+  <ul>
+    <li><strong>May 1, 2026</strong> Nominations opened</li>
+    <li><strong>Aug 21, 2026 (2 pm)</strong> Nominations close / last day to withdraw</li>
+    <li><strong>Aug 24, 2026</strong> Candidates certified</li>
+    <li><strong>Oct 26, 2026</strong> Election Day</li>
+    <li><strong>Nov 15, 2026</strong> Term of office begins</li>
+  </ul>
+</section>
+
 <div class="note">
-  Nominations close Aug 21. Data as of mid-August 2026. Always verify final certified list on the City of Hamilton website.
+  Data compiled mid-August 2026. Always verify the final certified list on the City of Hamilton website after Aug 24.
 </div>
 
 <div class="controls">
@@ -151,15 +193,16 @@ const candidates = [
     name: "Chase Alford",
     status: "challenger",
     detailed: true,
-    background: "Waterdown raised (25 yrs). BSc Biological Sciences (Guelph). Agricultural management experience in New Brunswick & Chatham-Kent.",
+    background: "Born in Hamilton; moved to Waterdown in 2001 at age 10 with his single mother and sister after his father’s sudden death. Attended Waterdown District High School. Earned a BSc in Biological Sciences with a minor in Ecology from the University of Guelph. Built a career managing large-scale agricultural production in New Brunswick and Chatham-Kent, eventually overseeing six acres of complex greenhouse operations. Returned to Ward 15 and was the first candidate to file for the seat. Age 34.",
     platform: [
-      "Infrastructure accountability & roads",
-      "Fair taxation / oppose stormwater fees on farms",
-      "Community safety (seek police board seat)",
-      "Protect agricultural land & environment"
+      "Infrastructure accountability & roads (project-manager approach)",
+      "Fair taxation / oppose stormwater fees hitting farms",
+      "Community safety (seek seat on police services board)",
+      "Protect agricultural land, green space & environment"
     ],
     sources: [
       {label: "Campaign site", url: "https://chase4ward15.ca/"},
+      {label: "FlamboroughToday", url: "https://www.flamboroughtoday.com/2026-municipal-election-news/ward-15-candidate-chase-alford-says-infrastructure-and-traffic-are-flamboroughs-biggest-challenges-12325137"},
       {label: "CBC", url: "https://www.cbc.ca/news/canada/hamilton/whos-running-hamilton-2026-9.7249262"}
     ]
   },
@@ -167,33 +210,33 @@ const candidates = [
     name: "Ted McMeekin",
     status: "incumbent",
     detailed: true,
-    background: "Current Ward 15 councillor (elected 2022). Former Flamborough mayor, 5-term Liberal MPP, previous Hamilton councillor.",
+    background: "Born ~1948 and raised on Hamilton’s west mountain. Social worker by training (BSW McMaster, MSW Wilfrid Laurier). Early career included executive director of the Burlington Social Planning Council, chair of part-time studies at Mohawk College, and Mission & Stewardship Officer for the United Church. Owned and operated Chapters Bookstore in Waterdown for eight years. First elected to Hamilton City Council (Ward 7) 1976–1980. Moved to Flamborough and served as Mayor of the Town of Flamborough 1994–2000. Five-term Liberal MPP (2000–2018) holding four cabinet portfolios (Government & Consumer Services; Agriculture, Food & Rural Affairs; Community & Social Services; Municipal Affairs & Housing). Returned to municipal politics and won Ward 15 in 2022. Married to Dr. Barb McMeekin (Carlisle family physician); three daughters. Extensive community volunteer (YMCA president, Lung Association, Mental Health Association, etc.).",
     platform: [
-      "Joint police & fire station",
+      "Joint police & fire station (Parkside) — major achievement",
       "Grow agro-food sector",
       "Protect environment",
       "Enhance public transit",
       "Affordable housing",
-      "~$170M investments secured (claimed)"
+      "Claims ~$170M in secured/committed investments for the ward"
     ],
     sources: [
       {label: "Campaign / office site", url: "https://www.tedmcmeekinward15.com/"},
-      {label: "CBC", url: "https://www.cbc.ca/news/canada/hamilton/whos-running-hamilton-2026-9.7249262"},
-      {label: "FlamboroughToday", url: "https://www.flamboroughtoday.com/spotlight/councillor-ted-mcmeekin-record-investment-of-170-million-has-been-secured-and-committed-for-ward-15-flamborough-waterdown-11428116"}
+      {label: "Wikipedia", url: "https://en.wikipedia.org/wiki/Ted_McMeekin"},
+      {label: "FlamboroughToday", url: "https://www.flamboroughtoday.com/spotlight/councillor-ted-mcmeekin-record-investment-of-170-million-has-been-secured-and-committed-for-ward-15-flamborough-waterdown-11428116"},
+      {label: "CBC", url: "https://www.cbc.ca/news/canada/hamilton/whos-running-hamilton-2026-9.7249262"}
     ]
   },
   {
     name: "Colleen Stewart",
     status: "challenger",
     detailed: true,
-    background: "Wife, mother, business owner (storytelling consultant). School council chair, long-term volunteer, neighbourhood activist. Recent Waterdown resident.",
+    background: "Age 56. Wife, mother, and business owner (storytelling / communications consultant). Moved to Waterdown from Burlington about two years ago with her husband and son. Active in her church, served four years on school council (one as Chair), long-term volunteer at an Ontario food bank and mission, and neighbourhood activist who successfully pushed for high-school community clean-up days and regularly organises litter clean-ups. Positions herself as a skilled facilitator who can bring residents’ concerns effectively to City Hall.",
     platform: [
-      "Fair share of tax dollars for Ward 15",
-      "City budget review for waste",
-      "Roads & infrastructure",
-      "Increased police presence",
-      "Recreation centre & family services",
-      "Attract high-paying jobs"
+      "Fair share of tax dollars for Ward 15 (budget review for waste)",
+      "Roads & infrastructure fixes",
+      "Increased police presence / safer streets",
+      "Complete recreation centre & family services",
+      "Attract high-paying local jobs through rezoning"
     ],
     sources: [
       {label: "Campaign site", url: "https://colleenstewart.ca/"},
@@ -205,7 +248,7 @@ const candidates = [
     name: "Zac Wrobel",
     status: "challenger",
     detailed: false,
-    background: "Limited public information available as of mid-August 2026.",
+    background: "Registered candidate for Ward 15. Very limited publicly available biographical or platform information as of mid-August 2026. No campaign website or detailed media profiles located.",
     platform: ["Platform details not yet published"],
     sources: [
       {label: "CBC list", url: "https://www.cbc.ca/news/canada/hamilton/whos-running-hamilton-2026-9.7249262"}
@@ -215,10 +258,11 @@ const candidates = [
     name: "Jeff Yaeger",
     status: "challenger",
     detailed: false,
-    background: "Waterdown resident. Director of LNMB Product Management and Consulting Inc.",
+    background: "Waterdown resident (24 Boulding Ave). Director of LNMB Product Management and Consulting Inc. (incorporated 2022). Very limited publicly available biographical or platform information as of mid-August 2026. No campaign website located.",
     platform: ["Platform details not yet published"],
     sources: [
-      {label: "CBC list", url: "https://www.cbc.ca/news/canada/hamilton/whos-running-hamilton-2026-9.7249262"}
+      {label: "CBC list", url: "https://www.cbc.ca/news/canada/hamilton/whos-running-hamilton-2026-9.7249262"},
+      {label: "Corporate records", url: "https://opengovca.com/director/jeffrey-joseph-yaeger"}
     ]
   }
 ];
