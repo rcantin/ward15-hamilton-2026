@@ -15,6 +15,7 @@
   --accent-light: #ccfbf1;
   --incumbent: #0369a1;
   --link: #0284c7;
+  --highlight: #fef08a;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -28,32 +29,33 @@ body {
 }
 header {
   text-align: center;
-  margin-bottom: 1.25rem;
-  padding: 1.25rem 0 0.5rem;
+  margin-bottom: 1rem;
+  padding: 1rem 0 0.25rem;
 }
 header h1 { font-size: 1.6rem; font-weight: 700; }
-header p { color: var(--muted); font-size: 0.95rem; margin-top: 0.25rem; }
+header p { color: var(--muted); font-size: 0.95rem; margin-top: 0.2rem; }
 .dates {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1rem 1.25rem;
-  margin-bottom: 1.25rem;
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  margin-bottom: 1rem;
 }
 .dates h2 {
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--muted);
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.4rem;
 }
 .dates ul {
   list-style: none;
-  display: grid;
-  gap: 0.35rem;
-  font-size: 0.95rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+  font-size: 0.875rem;
 }
-.dates li strong { display: inline-block; min-width: 9.5rem; }
+.dates li strong { font-weight: 600; }
 .controls {
   display: flex;
   flex-wrap: wrap;
@@ -123,13 +125,19 @@ select {
   font-weight: 500;
 }
 .sources a:hover { text-decoration: underline; }
+mark {
+  background: var(--highlight);
+  color: inherit;
+  padding: 0 0.1em;
+  border-radius: 2px;
+}
 .note {
   background: #fefce8;
   border: 1px solid #fde047;
   border-radius: 8px;
-  padding: 0.75rem 1rem;
-  font-size: 0.9rem;
-  margin-bottom: 1.25rem;
+  padding: 0.65rem 1rem;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
   color: #854d0e;
 }
 footer {
@@ -142,7 +150,7 @@ footer {
 @media (max-width: 600px) {
   header h1 { font-size: 1.3rem; }
   .card-header { flex-direction: column; }
-  .dates li strong { display: block; min-width: auto; }
+  .dates ul { flex-direction: column; gap: 0.25rem; }
 }
 </style>
 </head>
@@ -155,11 +163,11 @@ footer {
 <section class="dates">
   <h2>Key Dates</h2>
   <ul>
-    <li><strong>May 1, 2026</strong> Nominations opened</li>
-    <li><strong>Aug 21, 2026 (2 pm)</strong> Nominations close / last day to withdraw</li>
-    <li><strong>Aug 24, 2026</strong> Candidates certified</li>
-    <li><strong>Oct 26, 2026</strong> Election Day</li>
-    <li><strong>Nov 15, 2026</strong> Term of office begins</li>
+    <li><strong>May 1</strong> Nominations opened</li>
+    <li><strong>Aug 21, 2 pm</strong> Nominations close</li>
+    <li><strong>Aug 24</strong> Candidates certified</li>
+    <li><strong>Oct 26</strong> Election Day</li>
+    <li><strong>Nov 15</strong> Term begins</li>
   </ul>
 </section>
 
@@ -193,7 +201,7 @@ const candidates = [
     name: "Chase Alford",
     status: "challenger",
     detailed: true,
-    background: "Born in Hamilton; moved to Waterdown in 2001 at age 10 with his single mother and sister after his father’s sudden death. Attended Waterdown District High School. Earned a BSc in Biological Sciences with a minor in Ecology from the University of Guelph. Built a career managing large-scale agricultural production in New Brunswick and Chatham-Kent, eventually overseeing six acres of complex greenhouse operations. Returned to Ward 15 and was the first candidate to file for the seat. Age 34.",
+    background: "Born in Hamilton; moved to Waterdown in 2001 at age 10. Attended Waterdown District High School. Earned a BSc in Biological Sciences with a minor in Ecology from the University of Guelph. Built a career managing large-scale agricultural production in New Brunswick and Chatham-Kent, eventually overseeing six acres of complex greenhouse operations. Returned to Ward 15 and was the first candidate to file for the seat. Age 34.",
     platform: [
       "Infrastructure accountability & roads (project-manager approach)",
       "Fair taxation / oppose stormwater fees hitting farms",
@@ -210,7 +218,7 @@ const candidates = [
     name: "Ted McMeekin",
     status: "incumbent",
     detailed: true,
-    background: "Born ~1948 and raised on Hamilton’s west mountain. Social worker by training (BSW McMaster, MSW Wilfrid Laurier). Early career included executive director of the Burlington Social Planning Council, chair of part-time studies at Mohawk College, and Mission & Stewardship Officer for the United Church. Owned and operated Chapters Bookstore in Waterdown for eight years. First elected to Hamilton City Council (Ward 7) 1976–1980. Moved to Flamborough and served as Mayor of the Town of Flamborough 1994–2000. Five-term Liberal MPP (2000–2018) holding four cabinet portfolios (Government & Consumer Services; Agriculture, Food & Rural Affairs; Community & Social Services; Municipal Affairs & Housing). Returned to municipal politics and won Ward 15 in 2022. Married to Dr. Barb McMeekin (Carlisle family physician); three daughters. Extensive community volunteer (YMCA president, Lung Association, Mental Health Association, etc.).",
+    background: "Born ~1948 and raised on Hamilton’s west mountain. Social worker by training (BSW McMaster, MSW Wilfrid Laurier). Early career included executive director of the Burlington Social Planning Council, chair of part-time studies at Mohawk College, and Mission & Stewardship Officer for the United Church. Owned and operated Chapters Bookstore in Waterdown for eight years. First elected to Hamilton City Council (Ward 7) 1976–1980. Moved to Flamborough and served as Mayor of the Town of Flamborough 1994–2000. Five-term Liberal MPP (2000–2018) holding four cabinet portfolios (Government & Consumer Services; Agriculture, Food & Rural Affairs; Community & Social Services; Municipal Affairs & Housing). Returned to municipal politics and won Ward 15 in 2022. Extensive community volunteer (YMCA president, Lung Association, Mental Health Association, etc.).",
     platform: [
       "Joint police & fire station (Parkside) — major achievement",
       "Grow agro-food sector",
@@ -258,11 +266,10 @@ const candidates = [
     name: "Jeff Yaeger",
     status: "challenger",
     detailed: false,
-    background: "Waterdown resident (24 Boulding Ave). Director of LNMB Product Management and Consulting Inc. (incorporated 2022). Very limited publicly available biographical or platform information as of mid-August 2026. No campaign website located.",
+    background: "Waterdown resident. Director of LNMB Product Management and Consulting Inc. (incorporated 2022). Very limited publicly available biographical or platform information as of mid-August 2026. No campaign website located.",
     platform: ["Platform details not yet published"],
     sources: [
-      {label: "CBC list", url: "https://www.cbc.ca/news/canada/hamilton/whos-running-hamilton-2026-9.7249262"},
-      {label: "Corporate records", url: "https://opengovca.com/director/jeffrey-joseph-yaeger"}
+      {label: "CBC list", url: "https://www.cbc.ca/news/canada/hamilton/whos-running-hamilton-2026-9.7249262"}
     ]
   }
 ];
@@ -271,6 +278,17 @@ const cardsEl = document.getElementById("cards");
 const searchEl = document.getElementById("search");
 const filterEl = document.getElementById("filter");
 const sortEl = document.getElementById("sort");
+
+function escapeHtml(str) {
+  return str.replace(/&/g,"&").replace(/</g,"<").replace(/>/g,">").replace(/"/g,""");
+}
+
+function highlight(text, query) {
+  if (!query) return escapeHtml(text);
+  const escaped = escapeHtml(text);
+  const re = new RegExp("(" + query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi");
+  return escaped.replace(re, "<mark>$1</mark>");
+}
 
 function render() {
   let list = [...candidates];
@@ -295,13 +313,13 @@ function render() {
   cardsEl.innerHTML = list.map(c => `
     <article class="card">
       <div class="card-header">
-        <h2>${c.name}</h2>
+        <h2>${highlight(c.name, q)}</h2>
         <span class="badge ${c.status}">${c.status === "incumbent" ? "Incumbent" : "Challenger"}</span>
       </div>
-      <p class="meta">${c.background}</p>
+      <p class="meta">${highlight(c.background, q)}</p>
       <div class="platform">
         <strong>Platform highlights</strong>
-        <ul>${c.platform.map(p => `<li>${p}</li>`).join("")}</ul>
+        <ul>${c.platform.map(p => `<li>${highlight(p, q)}</li>`).join("")}</ul>
       </div>
       <div class="sources">
         ${c.sources.map(s => `<a href="${s.url}" target="_blank" rel="noopener">${s.label}</a>`).join("")}
