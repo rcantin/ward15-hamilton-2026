@@ -29,7 +29,7 @@ body {
 }
 header {
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   padding: 1rem 0 0.25rem;
 }
 header h1 { font-size: 1.6rem; font-weight: 700; }
@@ -95,6 +95,7 @@ select {
   color: var(--muted);
 }
 .platform ul { padding-left: 1.2rem; font-size: 0.95rem; }
+.platform li { margin-bottom: 0.35rem; }
 .sources { margin-top: 0.9rem; font-size: 0.9rem; }
 .sources a {
   color: var(--link);
@@ -108,15 +109,6 @@ mark {
   color: inherit;
   padding: 0 0.1em;
   border-radius: 2px;
-}
-.note {
-  background: #fefce8;
-  border: 1px solid #fde047;
-  border-radius: 8px;
-  padding: 0.65rem 1rem;
-  font-size: 0.875rem;
-  margin-bottom: 1rem;
-  color: #854d0e;
 }
 footer {
   margin-top: 2rem;
@@ -137,10 +129,6 @@ footer {
   <p>City Council Candidate Comparison</p>
 </header>
 
-<div class="note">
-  Data compiled mid-August 2026. Always verify the final certified list on the City of Hamilton website after Aug 24.
-</div>
-
 <div class="controls">
   <input type="search" id="search" placeholder="Search name, background, platform…">
   <select id="filter">
@@ -158,7 +146,7 @@ footer {
 <div class="cards" id="cards"></div>
 
 <footer>
-  Sources linked on each card · Built for informed voting · Not affiliated with any candidate or the City of Hamilton
+  Official campaign/office sites linked on each card · Built for informed voting · Not affiliated with any candidate or the City of Hamilton
 </footer>
 
 <script>
@@ -169,15 +157,13 @@ const candidates = [
     detailed: true,
     background: "Born in Hamilton; moved to Waterdown in 2001 at age 10. Attended Waterdown District High School. Earned a BSc in Biological Sciences with a minor in Ecology from the University of Guelph. Built a career managing large-scale agricultural production in New Brunswick and Chatham-Kent, eventually overseeing six acres of complex greenhouse operations. Returned to Ward 15 and was the first candidate to file for the seat. Age 34.",
     platform: [
-      "Infrastructure accountability and roads (project-manager approach)",
-      "Fair taxation / oppose stormwater fees hitting farms",
-      "Community safety (seek seat on police services board)",
-      "Protect agricultural land, green space and environment"
+      "Infrastructure and roads: Treat Waterdown construction chaos (bridge, Parkside, delayed bypass) with a project-manager approach; hold contractors accountable",
+      "Fair taxation: Ward 15 pays some of Hamilton's highest property taxes for weaker services; oppose stormwater charges that can cost agricultural operations tens of thousands annually; demand a fair share of investment",
+      "Community safety: Seek a seat on the police services board; work with the incoming Parkside police compound to restore visible presence after car thefts and other incidents",
+      "Environmental conservation: Protect agricultural land and green space; investigate resident health concerns tied to Opta Minerals expansion; pursue a seat on the Hamilton Conservation Authority board to resist development of woodlands and trails"
     ],
     sources: [
-      {label: "Campaign site", url: "https://chase4ward15.ca/"},
-      {label: "FlamboroughToday", url: "https://www.flamboroughtoday.com/2026-municipal-election-news/ward-15-candidate-chase-alford-says-infrastructure-and-traffic-are-flamboroughs-biggest-challenges-12325137"},
-      {label: "CBC", url: "https://www.cbc.ca/news/canada/hamilton/whos-running-hamilton-2026-9.7249262"}
+      {label: "Campaign site", url: "https://chase4ward15.ca/"}
     ]
   },
   {
@@ -186,18 +172,16 @@ const candidates = [
     detailed: true,
     background: "Born ~1948 and raised on Hamilton's west mountain. Social worker by training (BSW McMaster, MSW Wilfrid Laurier). Early career included executive director of the Burlington Social Planning Council, chair of part-time studies at Mohawk College, and Mission and Stewardship Officer for the United Church. Owned and operated Chapters Bookstore in Waterdown for eight years. First elected to Hamilton City Council (Ward 7) 1976-1980. Moved to Flamborough and served as Mayor of the Town of Flamborough 1994-2000. Five-term Liberal MPP (2000-2018) holding four cabinet portfolios (Government and Consumer Services; Agriculture, Food and Rural Affairs; Community and Social Services; Municipal Affairs and Housing). Returned to municipal politics and won Ward 15 in 2022. Extensive community volunteer (YMCA president, Lung Association, Mental Health Association, etc.).",
     platform: [
-      "Joint police and fire station (Parkside) - major achievement",
-      "Grow agro-food sector",
-      "Protect environment",
+      "Joint police and fire station on Parkside (major priority and achievement; ~$60M facility with added officers, firefighters, 911 dispatch and collision reporting centre, targeting Spring 2027)",
+      "Grow the agro-food sector while protecting the environment",
       "Enhance public transit",
-      "Affordable housing",
-      "Claims ~$170M in secured/committed investments for the ward"
+      "Address the affordable housing crisis",
+      "Push for a Waterdown recreation centre (notes other areas have multiple centres while Ward 15 has none)",
+      "Service guarantee: return constituent messages within 24 hours; Thursday drop-in office hours 2-8pm",
+      "Claims record investment secured/committed for the ward (roads, bridges, parks, school, recreation, safety infrastructure)"
     ],
     sources: [
-      {label: "Campaign / office site", url: "https://www.tedmcmeekinward15.com/"},
-      {label: "Wikipedia", url: "https://en.wikipedia.org/wiki/Ted_McMeekin"},
-      {label: "FlamboroughToday", url: "https://www.flamboroughtoday.com/spotlight/councillor-ted-mcmeekin-record-investment-of-170-million-has-been-secured-and-committed-for-ward-15-flamborough-waterdown-11428116"},
-      {label: "CBC", url: "https://www.cbc.ca/news/canada/hamilton/whos-running-hamilton-2026-9.7249262"}
+      {label: "Campaign / office site", url: "https://www.tedmcmeekinward15.com/"}
     ]
   },
   {
@@ -206,37 +190,32 @@ const candidates = [
     detailed: true,
     background: "Age 56. Wife, mother, and business owner (storytelling / communications consultant). Moved to Waterdown from Burlington about two years ago with her husband and son. Active in her church, served four years on school council (one as Chair), long-term volunteer at an Ontario food bank and mission, and neighbourhood activist who successfully pushed for high-school community clean-up days and regularly organises litter clean-ups. Positions herself as a skilled facilitator who can bring residents' concerns effectively to City Hall.",
     platform: [
-      "Fair share of tax dollars for Ward 15 (budget review for waste)",
-      "Roads and infrastructure fixes",
-      "Increased police presence / safer streets",
-      "Complete recreation centre and family services",
-      "Attract high-paying local jobs through rezoning"
+      "Property taxes and budget: Complete review of the City budget to find wasteful spending; focus on essential services, necessary infrastructure and required social spending; cut red tape to attract commercial development",
+      "Fair share for Ward 15: Stop tax dollars being redirected to downtown problems unrelated to local needs",
+      "Roads and infrastructure: Fix roads, finish sidewalks and build playgrounds in a timely way; keep stalled projects moving",
+      "Public safety: Increase police presence to protect property and keep roads safe; ensure efficient emergency services",
+      "Recreation and families: Complete an accessible Community Recreation Centre with affordable services; finish playgrounds and spaces for a growing community",
+      "Jobs and growth: Rezone available areas for businesses that bring high-paying local jobs while maintaining community character"
     ],
     sources: [
-      {label: "Campaign site", url: "https://colleenstewart.ca/"},
-      {label: "FlamboroughToday", url: "https://www.flamboroughtoday.com/municipal-election/ward-15-council-candidate-calls-for-closer-look-at-hamilton-spending-priorities-12423731"},
-      {label: "CBC", url: "https://www.cbc.ca/news/canada/hamilton/whos-running-hamilton-2026-9.7249262"}
+      {label: "Campaign site", url: "https://colleenstewart.ca/"}
     ]
   },
   {
     name: "Zac Wrobel",
     status: "challenger",
     detailed: false,
-    background: "Registered candidate for Ward 15. Very limited publicly available biographical or platform information as of mid-August 2026. No campaign website or detailed media profiles located.",
+    background: "Registered candidate for Ward 15. Very limited publicly available biographical or platform information. No campaign website located.",
     platform: ["Platform details not yet published"],
-    sources: [
-      {label: "CBC list", url: "https://www.cbc.ca/news/canada/hamilton/whos-running-hamilton-2026-9.7249262"}
-    ]
+    sources: []
   },
   {
     name: "Jeff Yaeger",
     status: "challenger",
     detailed: false,
-    background: "Waterdown resident. Director of LNMB Product Management and Consulting Inc. (incorporated 2022). Very limited publicly available biographical or platform information as of mid-August 2026. No campaign website located.",
+    background: "Waterdown resident. Director of LNMB Product Management and Consulting Inc. (incorporated 2022). Very limited publicly available biographical or platform information. No campaign website located.",
     platform: ["Platform details not yet published"],
-    sources: [
-      {label: "CBC list", url: "https://www.cbc.ca/news/canada/hamilton/whos-running-hamilton-2026-9.7249262"}
-    ]
+    sources: []
   }
 ];
 
@@ -291,9 +270,7 @@ function render() {
         <strong>Platform highlights</strong>
         <ul>${c.platform.map(p => `<li>${highlight(p, q)}</li>`).join("")}</ul>
       </div>
-      <div class="sources">
-        ${c.sources.map(s => `<a href="${s.url}" target="_blank" rel="noopener">${s.label}</a>`).join("")}
-      </div>
+      ${c.sources.length ? `<div class="sources">${c.sources.map(s => `<a href="${s.url}" target="_blank" rel="noopener">${s.label}</a>`).join("")}</div>` : ""}
     </article>
   `).join("") || "<p style='color:var(--muted);text-align:center;padding:2rem'>No candidates match your filters.</p>";
 }
