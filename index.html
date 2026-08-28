@@ -120,6 +120,15 @@ footer {
 @media (max-width: 600px) {
   header h1 { font-size: 1.3rem; }
   .card-header { flex-direction: column; }
+  input[type="search"] {
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+  }
+  select {
+    flex: 1 1 calc(50% - 0.4rem);
+    min-width: 0;
+  }
 }
 </style>
 </head>
